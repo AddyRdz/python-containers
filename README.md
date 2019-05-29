@@ -62,7 +62,7 @@
 	```python
 	student = {
 		'name': 'Fred',
-		'course': 'WDI',
+		'course': 'SEI',
 		'current_week': 4
 	} 
 	```
@@ -164,7 +164,7 @@
 
 	```python
 	print( student )
-	> {'name': 'Tina', 'course': 'WDI'}
+	> {'name': 'Tina', 'course': 'SEI'}
 	len(student)
 	> 2
 	len({})
@@ -198,7 +198,7 @@
 
 	```python
 	student.items():
-	> dict_items([('name', 'Tina'), ('course', 'WDI')])
+	> dict_items([('name', 'Tina'), ('course', 'SEI')])
 	```
 
 - The `for` statement assigns the values in a _tuple_ to multiple variables like with `key, val` above.
