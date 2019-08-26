@@ -59,7 +59,7 @@
 	student = {
 		'name': 'Fred',
 		'course': 'SEI',
-		'current_week': 4
+		'current_week': 7
 	} 
 	```
 - Unlike in JS, _strings_ used as keys must be quoted.
@@ -122,14 +122,11 @@
 
 - Another way to avoid the `KeyError` is to use the `in` operator to check if the _dictionary_ includes a key:
 
-	```python
-	# Must import the standard datetime module
-	import datetime
-	
-	if 'birthdate' in student:
-		today = datetime.datetime.today()
-		is_birthday = (student['birthdate'].month == today.month and
-			student['birthdate'].day == today.day)
+	```python	
+	if 'course' in student:
+	    print( f"{student['name']} is enrolled in {student['course']}")
+	else:
+	    print( f"{student['name']} is not enrolled in a course")
 	```
 
 ---
@@ -206,7 +203,7 @@
 ## Dictionary - Practice Exercise<br><small>(10 minutes)</small>
 <br>
 
-- Define a Python _dictionary_ named **`where_are_my_things`** containing a few items; where  the `keys` are things you have, and the `value` is the location you keep those things.
+- Define a Python _dictionary_ named **`where_my_things_are`** containing a few items; where  the `keys` are things you have, and the `value` is the location you keep those things.
 
 - Write a `for` loop that iterates over the items in the dictionary and prints each one as _My [thing] is kept [location]_.
 
@@ -409,13 +406,13 @@
 	```
 
 ---
-## Dictionary & List Review
+## ❓ Dictionary & List Review Questions
 
-- **What are _dictionaries_ similar to in JS?**
+1. **What are _dictionaries_ similar to in JS?**
 
-- **What are _lists_ similar to in JS?**
+2. **What are _lists_ similar to in JS?**
 
-- **Why won't the follow code work?**
+3. **Why won't the follow code work?**
 
 	```python
 	menu = {
@@ -425,9 +422,9 @@
 	}
 	```
 
-- **What is a way to add items to a _list_?**
+4. **What is a way to add items to a _list_?**
 
-- **What is a way to remove an item from the front of a _list_?**
+5. **What is a way to remove an item from the front of a _list_?**
 
 ---
 ## List Comprehensions
@@ -535,12 +532,12 @@
 	Nice and readable!
 
 ---
-### List Comprehensions - Review
+### ❓ List Comprehensions - Review Questions
 <br>
 
-- **What characters start and end a _list comprehension_**
+1. **What characters start and end a _list comprehension_**
 
-- **Does a _list comprehension_ create a new list?**
+2. **Does a _list comprehension_ create a new list?**
 
 ---
 ### List Comprehensions - Summary
