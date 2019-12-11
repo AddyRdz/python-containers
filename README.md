@@ -57,9 +57,9 @@
 
 	```python
 	student = {
-		'name': 'Fred',
-		'course': 'SEI',
-		'current_week': 7
+	  'name': 'Fred',
+	  'course': 'SEI',
+	  'current_week': 7
 	} 
 	```
 - Unlike in JS, _strings_ used as keys must be quoted.
@@ -124,9 +124,9 @@
 
 	```python	
 	if 'course' in student:
-	    print( f"{student['name']} is enrolled in {student['course']}")
+	  print( f"{student['name']} is enrolled in {student['course']}")
 	else:
-	    print( f"{student['name']} is not enrolled in a course")
+	  print( f"{student['name']} is not enrolled in a course")
 	```
 
 ---
@@ -175,7 +175,7 @@
 
 	```python
 	for key in student:
-	    print( f"{key} = {student[key]}" )
+	  print( f"{key} = {student[key]}" )
 	```
 	
 - The preferred way is to use the `items()` method to obtain a [dictionary view object](https://docs.python.org/3/library/stdtypes.html#dictionary-view-objects)...
@@ -187,7 +187,7 @@
 
 	```python
 	for key, val in student.items():
-	    print( f"{key} = {val}" )
+	  print( f"{key} = {val}" )
 	```
 
 - The `student.items()` call above returns a wrapped set of _tuples_:
@@ -288,6 +288,8 @@
 	> ['red', 'green', 'brown']
 	```
 
+- Unlike with JS arrays, assigning to a non-existing index results in an error.
+
 ---
 ### Lists - Adding Items
 <br>
@@ -385,7 +387,7 @@
 	```python
 	colors = ['red', 'green', 'blue']
 	for color in colors:
-		print(color)
+	  print(color)
 	> red
 	> green
 	> blue
@@ -399,7 +401,7 @@
 
 	```python
 	for idx, color in enumerate(colors):
-		print(idx, color)
+	  print(idx, color)
 	> 0 red
 	> 1 green
 	> 2 blue
@@ -412,13 +414,13 @@
 
 2. **What are _lists_ similar to in JS?**
 
-3. **Why won't the follow code work?**
+3. **Why might the follow code work?**
 
 	```python
 	menu = {
-		hamburger: 4.99,
-		french_fries: 1.99,
-		taco: 2.99
+	  hamburger: 4.99,
+	  french_fries: 1.99,
+	  taco: 2.99
 	}
 	```
 
@@ -451,7 +453,7 @@
 	# I want 'n * n' for each 'n' in nums 
 	squares = []
 	for n in nums:
-		squares.append(n * n)
+	  squares.append(n * n)
 	print(squares)
 	> [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
 	```
@@ -467,7 +469,7 @@
 	# I want 'n * n' for each 'n' in nums 
 	squares = []
 	for n in nums:
-		squares.append(n * n)
+	  squares.append(n * n)
 	```
 	To this:
 	
@@ -502,9 +504,9 @@
 	# I want 'n * n' for each 'n' in nums  if 'n * n' is even
 	even_squares = []
 	for n in nums:
-		square = n * n 
-		if square % 2 == 0:
-			even_squares.append(square)
+	  square = n * n 
+	  if square % 2 == 0:
+	    even_squares.append(square)
 	print(even_squares)
 	> [4, 16, 36, 64, 100]
 	```
@@ -519,9 +521,9 @@
 	# I want 'n * n' for each 'n' in nums  if 'n * n' is even
 	even_squares = []
 	for n in nums:
-		square = n * n 
-		if square % 2 == 0:
-			even_squares.append(square)
+	  square = n * n 
+	  if square % 2 == 0:
+	    even_squares.append(square)
 	```
 	To this one-liner:
 	
@@ -657,7 +659,7 @@
 	```python
 	colors = ('red', 'green', 'blue')
 	for idx, color in enumerate(colors):
-		print(idx, color)
+	  print(idx, color)
 	> 0 red
 	> 1 green
 	> 2 blue
