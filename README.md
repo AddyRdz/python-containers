@@ -92,7 +92,7 @@
 	print(name)
 	> Fred
 	student['name'] = 'Tina'
-	print(name)
+	print(student['name'])
 	> Tina
 	```
 
@@ -414,7 +414,7 @@
 
 2. **What are _lists_ similar to in JS?**
 
-3. **Why might the follow code work?**
+3. **Why might the following code not work?**
 
 	```python
 	menu = {
