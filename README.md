@@ -736,9 +736,30 @@
 	```
 
 ---
-## Conclusion
+## Summary
 <br>
 
 - Python offers amazing power, convenience and readability with features such as _list comprehensions_ and _slicing_.
 
-- However, as usual, it takes practice to become "comfortable" with these concepts, so on to the lab...
+- However, as usual, it takes practice to become "comfortable" with these concepts, so on to the lab, but first...
+
+---
+## ❓ Essential Questions
+<br>
+
+1. True or False:  In Python, we use Lists, Tuples & Dictionaries as containers for data.
+
+2. Assuming this dictionary:
+
+	```python
+	fruit = {
+	  'apples': 'red',
+	  'bananas': 'yellow',
+	  'oranges': 'orange'
+	}
+	```
+	Identify the problem with this statement:
+	
+	```python
+	color_of_bananas = fruit.bananas
+	```
