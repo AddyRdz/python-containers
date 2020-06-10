@@ -1,418 +1,368 @@
-[click to view as a presentation](https://presentations.generalassemb.ly/8dc06dcff1d57fc8a6f0b8cee65560c0#/1)
-
----
 <img src="https://i.imgur.com/DPzk4Ok.png">
 
 # Python Containers
 
----
 ## Learning Objectives
-<br>
 
-<p>Students will be able to:</p>
+| Students will be able to: |
+| Use _lists_, _tuples_ & _dictionaries_ as containers for data |
+| Use _list comprehensions_ to create lists |
+| Create subsets of a _sequence_ using the _slice_ operator |
 
-- Use _lists_, _tuples_ & _dictionaries_ as containers for data
-
-- Use _list comprehensions_ to create lists
-
-- Create subsets of a _sequence_ using the _slice_ operator
-
----
 ## Setup
-<br>
 
-- To test some of the examples and complete the exercises, please open a Python _repl.it_
+To test some of the examples and complete the exercises, please open a Python [repl.it](https://repl.it/).
 
----
-### General Purpose Containers
-<br>
+## General Purpose Containers
 
-- As you know by now, applications frequently need to maintain collections of data within a _container_ data type.
+As you've learned, applications frequently need to maintain collections of data within a _container_ data type.
 
-- **What did we use in JS to hold collections of data?**
+**❓ What did we use in JS to hold collections of data?**
 
-- In this lesson, we're going to review the following Python built-in types commonly used as _containers_:
-	- **dictionaries**
-	- **lists**
-	- **tuples**
+In this lesson, we're going to review the following Python built-in types commonly used as containers:
 
----
+- **dictionaries**
+- **lists**
+- **tuples**
+
 ## Dictionaries
 
----
-### Dictionaries - Purpose
-<br>
+### Purpose
 
-- **Dictionaries** are to Python as **objects** are to JS.
+**Dictionaries** are to Python as **objects** are to JS.
 
-- A **dictionary** provides a container for `key: value` pairs. We can refer to `key: value` pairs as **items**.
+A **dictionary** provides a container for `key: value` pairs.
 
-- _Dictionaries_ have a class (type) of `dict`.
+In Python, we commonly refer to `key: value` pairs as **items** vs. **properties** as in JS.
 
----
-### Dictionaries - Basic Syntax
-<br>
+_Dictionaries_ have a class (type) of `dict`.
 
-- Like _objects_ in JS, a **dictionary** is created with a set of _curly braces_:
+### Basic Syntax
 
-	```python
-	student = {
-	  'name': 'Fred',
-	  'course': 'SEI',
-	  'current_week': 7
-	} 
-	```
-- Unlike in JS, _strings_ used as keys must be quoted.
+As with objects in JS, a **dictionary** is created literally using curly braces:
 
-- If not quoted, Python expects the identifier to be a variable holding what you want to use as the key. This is similar to how _computed properties_ work in JS.
+```python
+student = {
+  'name': 'Maria',
+  'course': 'SEI',
+  'current_week': 7
+} 
+```
 
----
-### Dictionaries - Features
-<br>
+Unlike in JS, when strings are used as keys, they must be quoted.
 
-<p><em>Dictionaries</em> have the following features:
+### Features
 
-- They are unordered (just like JS objects)
+Dictionaries are mutable:
 
-- They are mutable:
- 	- The values assigned to a key can be changed
- 	- Additional items can be added
- 	- Existing items can be deleted
+- The values assigned to a key can be changed
+- Additional items can be added
+- Existing items can be deleted
  
-- Any immutable type can be used as a key, including _numbers_ and _tuples_ (which we'll cover in a bit).
+Any immutable type can be used as a key, including _numbers_ and _tuples_ (which we'll cover in a bit), for example:
 
----
-### Dictionaries - Getting/Setting Values
-<br>
+```python
+someKey = 3
 
-- We use _square brackets_ to get and set an item's value:
+d = {
+  someKey: 'three'
+}
+```
 
-	```python
-	name = student['name']
-	print(name)
-	> Fred
-	student['name'] = 'Tina'
-	print(student['name'])
-	> Tina
-	```
+The above dictionary, `d`, has 1 item with a key of `3` that holds the value of `'three'`.
 
-- Unlike JS, you cannot access items in a Python dictionary using **dot notation** (dots are used to invoke methods).
+> Only since version 3.6 does Python track the insertion order of items in a dictionary - so beware if you're relying on the order items are iterated upon.
 
----
-### Dictionaries - <span style="text-transform: lowercase">get</span> Method
-<br>
+### Getting and Setting Values
 
-- Unlike JS which returns `undefined` when accessing a property that does not exist, a _dictionary_ will raise a `KeyError`.
+We use **square brackets** to get and set an item's value:
 
-- One option to avoid this error is to use the `get` method:
+```python
+name = student['name']
+print(name)
+> Maria
+student['name'] = 'Tina'
+print(student['name'])
+> Tina
+```
 
-	```python
-	birthdate = student['birthdate']
-	> KeyError: 'birthdate'
-	print( student.get('birthdate') )
-	> None
-	# Provide a default value if key not in dictionary
-	print( student.get('birthdate', '07-04-1776') )
-	> 07-04-1776
-	```
+Unlike JS, we can't access items in a Python dictionary using **dot notation** (dots are used to invoke methods on the dictionary).
 
----
-### Dictionaries - <span style="text-transform: lowercase">in</span> Operator
-<br>
+### The `get` Method
 
-- Another way to avoid the `KeyError` is to use the `in` operator to check if the _dictionary_ includes a key:
+When accessing a key that does not exist in a dictionary, a `KeyError` will be raised. 
 
-	```python	
-	if 'course' in student:
-	  print( f"{student['name']} is enrolled in {student['course']}")
-	else:
-	  print( f"{student['name']} is not enrolled in a course")
-	```
+❓ What happens when we access a property that does not exist in a JS object? 
 
----
-### Dictionaries - Adding Items
-<br>
+One option to avoid this error is to use the `get` method:
 
-- Simply assigning to a _key_ that does not exist will create a new item in the dictionary:
+```python
+skills = student['skills']
+> KeyError: 'skills'
+print( student.get('skills') )
+> None
+# Provide a default value if key not in dictionary
+print( student.get('skills', {'HTML': 5, 'JAVASCRIPT': 4}) )
+> {'HTML': 5, 'JAVASCRIPT': 4}
+```
 
-	```python
-	student['age'] = 21
-	```
+### The `in` Operator
 
----
-### Dictionaries - Deleting Items
-<br>
+Another way to avoid the `KeyError` is to use the `in` operator to check if the dictionary includes a key:
 
-- The `del` statement is used to delete an item from a _dictionary_:
+```python	
+if 'course' in student:
+  print( f"{student['name']} is enrolled in {student['course']}")
+else:
+  print( f"{student['name']} is not enrolled in a course")
+```
 
-	```python
-	del student['age']
-	# Verify that item was deleted
-	'age' in student
-	> False
-	```
+### Adding Items
 
----
-### Dictionaries - Number of Items
-<br>
+Simply assigning to a _key_ that does not exist will create a new item in the dictionary.
 
-- Use the built-in `len` function to retrieve the number of items in a _dictionary_:
+Let's add an item to `student`:
 
-	```python
-	print( student )
-	> {'name': 'Tina', 'course': 'SEI'}
-	len(student)
-	> 2
-	len({})
-	> 0
-	```
+```python
+student['age'] = 21
+```
 
----
+❓ If an `'age'` item already existed, what would happen? 
+
+### Deleting Items
+
+The `del` statement is used to delete an item from a dictionary:
+
+```python
+del student['age']
+# Verify that item was deleted
+'age' in student
+> False
+```
+
+### Number of Items
+
+Use the built-in `len` function to retrieve the number of items in a dictionary:
+
+```python
+print( student )
+> {'name': 'Tina', 'course': 'SEI'}
+len(student)
+> 2
+len({})
+> 0
+```
+
 ### Dictionaries - Iterating Items
-<br>
 
-- `for` loops are used to iterate over the items in a dictionary. However, the following is considered to be a Python [anti-pattern](https://en.wikipedia.org/wiki/Anti-pattern):
+`for` loops are used to iterate over the items in a dictionary. 
 
-	```python
-	for key in student:
-	  print( f"{key} = {student[key]}" )
-	```
+However, accessing the value of an item as follows is considered to be a Python [anti-pattern](https://en.wikipedia.org/wiki/Anti-pattern):
+
+```python
+for key in student:
+  print( f"{key} = {student[key]}" )
+```
 	
-- The preferred way is to use the `items()` method to obtain a [dictionary view object](https://docs.python.org/3/library/stdtypes.html#dictionary-view-objects)...
+The preferred approach is to use the `items()` method to obtain a [dictionary view object](https://docs.python.org/3/library/stdtypes.html#dictionary-view-objects).
 
----
-### Dictionaries - Iterating Items
+`student.items()` returns a wrapped set of (key, value) tuples:
 
-- The best practice way to iterate over the items in a _dictionary_ is to use a `for` loop to iterate over a _dictionary view object_ as follows:
+```python
+student.items():
+> dict_items([('name', 'Tina'), ('course', 'SEI')])
+```
 
-	```python
-	for key, val in student.items():
-	  print( f"{key} = {val}" )
-	```
+Then use a `for in` loop to iterate over the view object:
 
-- The `student.items()` call above returns a wrapped set of _tuples_:
+```python
+for key, val in student.items():
+  print( f"{key} = {val}" )
+```
 
-	```python
-	student.items():
-	> dict_items([('name', 'Tina'), ('course', 'SEI')])
-	```
+The `for` statement "unpacks" the tuples by assigning its values to multiple variables like with `key, val` above.
 
-- The `for` statement "unpacks" the tuples by assigning its values to multiple variables like with `key, val` above.
+### 💪 Dictionary - Practice Exercise (10 minutes)
 
----
-## Dictionary - Practice Exercise<br><small>(10 minutes)</small>
-<br>
+1. Define a Python dictionary named `where_my_things_are` containing a few items where:
+	- the `keys` are things you have, and
+	- the `values` are the locations you keep those things.
 
-- Define a Python _dictionary_ named **`where_my_things_are`** containing a few items; where  the `keys` are things you have, and the `value` is the location you keep those things.
+2. Write a `for` loop that iterates over the items in the dictionary and prints each one as<br>**_My [thing] is kept [location]_**
 
-- Write a `for` loop that iterates over the items in the dictionary and prints each one as _My [thing] is kept [location]_.
 
----
 ## Lists
 
----
-### Lists - Purpose
-<br>
+### Purpose
 
-- **Lists** are to Python as **arrays** are to JS.
+**Lists** are to Python as **arrays** are to JS.
 
-- A **list** provides a container for zero or more items (_elements_).
+A **list** provides a container for zero or more items (_elements_).
 
-- **Lists** can contain items of different types, including _dictionaries_ and nested _lists_.
+**Lists** can contain items of different types, including dictionaries and nested lists.
 
-- **Lists** have a class (type) of `list`.
+**Lists** have a class (type) of `list`.
 
----
-### Lists - Basic Syntax
-<br>
+### Basic Syntax
 
-- Like _arrays_ in JS, a **list** is created with a set of _square brackets_:
+Like arrays in JS, a **list** can be created with a set of **square brackets**:
 
-	```python
-	colors = ['red', 'green', 'blue'] 
-	```
+```python
+colors = ['red', 'green', 'blue'] 
+```
 
-- The number of items in a _list_ is returned using the built-in `len()` function:
+The number of items in a list is returned using the built-in `len()` function:
 
-	```python
-	len(colors)
-	> 3
-	```
----
-### Lists - Features
-<br>
+```python
+len(colors)
+> 3
+```
+### Features
 
-<p><em>Lists</em> have the following features:
+Lists are considered to be a _sequence_ type in Python. A _sequence_ is a generic term used for an **ordered** collection. Other _sequence_ types in Python include **strings** and **tuples**.
 
-- They are considered to be a _sequence_ type in Python. A _sequence_ is a generic term used for an **ordered** collection. Other _sequence_ types in Python include _strings_ and _tuples_.
+Lists are mutable:
 
-- Lists are mutable:
+- Items within a list can be replaced
+- Items can be added and removed from a list
 
- 	- Items within the _list_ can be replaced
- 	- Items can be added and removed from a _list_
+### Accessing Items
 
----
-### Lists - Accessing Items
-<br>
+Accessing the individual items of a list is much like accessing elements in a JS array, i.e., by using square brackets with an expression that evaluates to an integer:
 
-- Accessing the individual items of a _list_ is much like accessing elements in a JS array, i.e., by using _square brackets_ with an expression that evaluates to an integer:
+```python
+idx = 1
+colors[idx + 1]
+> blue
+```
 
-	```python
-	idx = 1
-	colors[idx + 1]
-	> blue
-	```
+However, unlike in JS, we can use negative integers to index from the end of a list:
 
----
-### Lists - Accessing Items
-<br>
+```python
+colors[-1]
+> blue
+```
+No need to write code like `colors[len(colors) - 1]` - yay!
 
-- However, unlike in JS, we can use negative integers to index from the end of a _list_:
-
-	```python
-	colors[-1]
-	> blue
-	```
-	No need to write code like `colors[len(colors) - 1]` - yay!
+### Assigning Items
 
 
----
-### Lists - Assigning Items
-<br>
+We also use square brackets to target an item of a list for assignment:
 
-- We also use square brackets to target an item of a _list_ for assignment:
+```python
+colors[-1] = 'brown'
+print(colors)
+> ['red', 'green', 'brown']
+```
 
-	```python
-	colors[-1] = 'brown'
-	print(colors)
-	> ['red', 'green', 'brown']
-	```
+Unlike with JS arrays, assigning to a non-existing index results in an error:
 
-- Unlike with JS arrays, assigning to a non-existing index results in an error.
+```python
+colors[10] = 'yellow'
+> IndexError: list assignment index out of range
+```
 
----
-### Lists - Adding Items
-<br>
+### Adding an Item
 
-- The equivalent to JS's `push()` method is `append()`:
+The equivalent to JS's `push()` method is `append()`:
 
-	```python
-	colors.append('purple')
-	```
+```python
+colors.append('purple')
+```
 	
-	However, unlike JS's `push()` method, `append()` can only add one item and does not return a value.
+However, unlike JS's `push()` method, `append()` can only add one item and does not return a value.
 	
-- For adding multiple items, use the `extend()`:
+For adding multiple items, use the `extend()`:
 
-	```python
-	colors.extend(['orange', 'black'])
-	```
+```python
+colors.extend(['orange', 'black'])
+```
 
----
-### Lists - Inserting Item
-<br>
+### Inserting an Item
 
-- To add items to anywhere but the end of a _list_, use the `insert()` method:
+To add an item anywhere within a list, use the `insert()` method:
 
-	```python
-	print(colors)
-	> ['red', 'green', 'brown', 'purple', 'orange', 'black']
-	colors.insert(1, 'yellow')
-	> ['red', 'yellow', 'green', 'brown', 'purple', 'orange', 'black']
-	```
+```python
+print(colors)
+> ['red', 'green', 'brown', 'purple', 'orange', 'black']
+colors.insert(1, 'yellow')
+> ['red', 'yellow', 'green', 'brown', 'purple', 'orange', 'black']
+```
 
----
-### Lists - Deleting Items
-<br>
+### Removing an Item
 
-- Yup, there's a `pop()` method, but it's more flexible in Python because you can specify the index of the item to remove and return:
+Yup, there's a `pop()` method, but it's more flexible in Python because you can specify the index of the item to remove and return:
 
-	```python
-	print(colors)
-	> ['red', 'yellow', 'green', 'brown', 'purple', 'orange', 'black']
-	green = colors.pop(2)
-	print(colors)
-	> ['red', 'yellow', 'brown', 'purple', 'orange', 'black']
-	```
+```python
+print(colors)
+> ['red', 'yellow', 'green', 'brown', 'purple', 'orange', 'black']
+green = colors.pop(2)
+print(colors)
+> ['red', 'yellow', 'brown', 'purple', 'orange', 'black']
+```
 
----
-### Lists - Deleting Items
-<br>
+If you don't care about the value returned by `pop()`, you can also use the `del` operator to delete an item:
 
-- If you don't care about the value returned by `pop()`, you can also use the `del` operator to delete items:
+```python
+print(colors)
+> ['red', 'yellow', 'brown', 'purple', 'orange', 'black']
+del colors[1]
+print(colors)
+> ['red', 'brown', 'purple', 'orange', 'black']
+```
 
-	```python
-	print(colors)
-	> ['red', 'yellow', 'brown', 'purple', 'orange', 'black']
-	del colors[1]
-	print(colors)
-	> ['red', 'brown', 'purple', 'orange', 'black']
-	```
+Also there's a `remove()` method that removes the first item that matches what you pass in:
 
----
-### Lists - Deleting Items
-<br>
+```python
+print(colors)
+> ['red', 'brown', 'purple', 'orange', 'black']
+colors.remove('orange')
+print(colors)
+> ['red', 'brown', 'purple', 'black']
+```
 
-- Also there's a `remove()` method that removes the first item that matches what you pass in:
+No value is returned by the `remove()` method.
 
-	```python
-	print(colors)
-	> ['red', 'brown', 'purple', 'orange', 'black']
-	colors.remove('orange')
-	print(colors)
-	> ['red', 'brown', 'purple', 'black']
-	```
-	No value is returned by the `remove()` method.
+### Clearing an Entire List
 
----
-### Lists - Clearing
-<br>
+The `clear()` method does just what you'd think:
 
-- Lastly, `clear()` does just what it's name implies:
+```python
+print(colors)
+> ['red', 'brown', 'purple', 'black']
+colors.clear()
+print(colors)
+> []
+```
 
-	```python
-	print(colors)
-	> ['red', 'brown', 'purple', 'black']
-	colors.clear()
-	print(colors)
-	> []
-	```
+### Iterating Over Items in a List
 
----
-### Lists - Iteration
-<br>
+The `for in` loop is used to iterate over the items in a list:
 
-- The `for` loop is used to iterate over the items in a _list_:
+```python
+colors = ['red', 'green', 'blue']
+for color in colors:
+  print(color)
+> red
+> green
+> blue
+```
 
-	```python
-	colors = ['red', 'green', 'blue']
-	for color in colors:
-	  print(color)
-	> red
-	> green
-	> blue
-	```
+If we need to access the index of the item while iterating over a list, we use the built-in `enumerate()` function to provide the index and the value to a `for` loop:
 
----
-### Lists - Iteration
-<br>
+```python
+for idx, color in enumerate(colors):
+  print(idx, color)
+> 0 red
+> 1 green
+> 2 blue
+```
 
-- If we need to access the index of the item while iterating a _list_, we use the built-in `enumerate()` function to provide the index and the value to a `for` loop:
-
-	```python
-	for idx, color in enumerate(colors):
-	  print(idx, color)
-	> 0 red
-	> 1 green
-	> 2 blue
-	```
-
----
 ## ❓ Dictionary & List Review Questions
 
-1. **What are _dictionaries_ similar to in JS?**
+1. **What are dictionaries similar to in JS?**
 
-2. **What are _lists_ similar to in JS?**
+2. **What are lists similar to in JS?**
 
 3. **Why might the following code not work?**
 
@@ -424,330 +374,268 @@
 	}
 	```
 
-4. **What is a way to add items to a _list_?**
+4. **What is one way to add items to a list?**
 
-5. **What is a way to remove an item from the front of a _list_?**
+5. **What operator can we use to remove an item from a list or a dictionary?**
 
----
 ## List Comprehensions
 
----
-### List Comprehensions
-<br>
+### Purpose
 
-- One of the most powerful features in Python are _list comprehensions_.
+_List comprehensions_ are a powerful feature in Python.
 
-- _List comprehensions_ provide a concise way to create and work with lists.
+They provide a concise way to create and work with lists.
 
-- They will probably seem a little confusing as first, but they certainly are a favorite of _Pythonistas_ and you will certainly come across them when googling.
+They will seem confusing as first, but they certainly are a favorite of _Pythonistas_ and you will probably come across them when googling.
 
----
-### List Comprehensions<br><small>Numerical Example</small>
-<br>
+### Numerical Example
 
-- If we needed to square all of the numbers in a _list_ and put them into a new _list_, we might use a for loop like this:
+Say we needed to square all of the numbers in a list and put them into a new list, we might use a for loop like this:
 
-	```python
-	nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```python
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 	
-	# I want 'n * n' for each 'n' in nums 
-	squares = []
-	for n in nums:
-	  squares.append(n * n)
-	print(squares)
-	> [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
-	```
+# I want 'n * n' for each 'n' in nums 
+squares = []
+for n in nums:
+  squares.append(n * n)
+print(squares)
+> [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
+```
 
-- **What method in JS would we use in this scenario?**
+❓What method in JS could we use in this scenario?
 
----
-### List Comprehensions<br><small>Numerical Example</small>
+A list comprehension can reduce this code:
 
-- A _list comprehension_ can reduce this code:
-
-	```python
-	# I want 'n * n' for each 'n' in nums 
-	squares = []
-	for n in nums:
-	  squares.append(n * n)
-	```
-	To this:
+```python
+squares = []
+for n in nums:
+  squares.append(n * n)
+```
+To this:
 	
-	```python
-	# I want 'n * n' for each 'n' in nums 
-	squares = [n * n for n in nums]
-	```
+```python
+squares = [n * n for n in nums]
+```
 
-- The _comprehension_ is basically an advanced `for` loop within _square brackets_ which, of course, returns a new _list_.
+### Basic Syntax
 
----
-### List Comprehensions - Basic Syntax
-<br>
+Here's the basic syntax of a _list comprehension_:
 
-- Here's the basic syntax of a _list comprehension_:
+```python
+# [<expression> for <item> in <list>]
+# This reads as: I want <expression> for each <item> in <list>
+```
 
-	```python
-	# [<expression> for <item> in <list>]
-	# This reads as: I want <expression> for each <item> in <list>
-	```
+As you can see, a list comprehension is basically a modified `for` loop within square brackets which, as we know, returns a new list.
 
----
-### List Comprehensions - Filtering
+### Filtering the Items
 
-- We've seen how _list comprehensions_ are a nice way to map a list, but they can be used for **filtering** too.
+We just saw how list comprehensions are a nice way to map a list, but they can be used for **filtering** too.
 
-- Again, we'll start by using a `for` loop to map and filter simultaneously:
+Again, let's start with a non-comprehension approach by using a `for` loop to map and filter `nums`:
 
-	```python
-	nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+```python
+nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 	
-	# I want 'n * n' for each 'n' in nums  if 'n * n' is even
-	even_squares = []
-	for n in nums:
-	  square = n * n 
-	  if square % 2 == 0:
-	    even_squares.append(square)
-	print(even_squares)
-	> [4, 16, 36, 64, 100]
-	```
+# I want 'n * n' for each 'n' in nums  if 'n * n' is even
+even_squares = []
+for n in nums:
+  square = n * n 
+  if square % 2 == 0:
+    even_squares.append(square)
+print(even_squares)
+> [4, 16, 36, 64, 100]
+```
 
+Again list comprehensions reduce the above from:
 
----
-### List Comprehensions - Filtering
-
-- Again _list comprehensions_ reduce the mapping and filtering from:
-
-	```python
-	# I want 'n * n' for each 'n' in nums  if 'n * n' is even
-	even_squares = []
-	for n in nums:
-	  square = n * n 
-	  if square % 2 == 0:
-	    even_squares.append(square)
-	```
-	To this one-liner:
+```python
+even_squares = []
+for n in nums:
+  square = n * n 
+  if square % 2 == 0:
+    even_squares.append(square)
+```
+To this one-liner:
 	
-	```python
-	# I want 'n * n' for each 'n' in nums  if 'n * n' is even
-	even_squares = [n * n for n in nums if (n * n) % 2 == 0]
-	```
-	Nice and readable!
+```python
+even_squares = [n * n for n in nums if (n * n) % 2 == 0]
+```
+Talk about less is more!
 
----
 ### ❓ List Comprehensions - Review Questions
-<br>
 
-1. **What characters start and end a _list comprehension_**
+1. **What characters start and end a list comprehension**
 
-2. **Does a _list comprehension_ create a new list?**
+2. **True or False: A list comprehension creates a new list?**
 
----
-### List Comprehensions - Summary
-<br>
-
-- We've only scratched the surface of _list comprehensions_.
-
-- They can even be used to create lists of _tuples_ that would otherwise require nested `for` loops.
-
-- Speaking of **tuples**...
-
----
 ## Tuples
 
----
-### Tuples - Purpose
-<br>
+**Tuples** in Python are very similar to Python **lists**.
 
-- **Tuples** in Python are very similar to **lists**.
+Tuples have a class (type) of `tuple`.
 
-- _Tuples_ have a class (type) of `tuple`.
+You may come across tuple's being "classified" based on how many items they contain, e.g., a **2-tuple** would be used to hold a `key` and its `value`.
 
----
-### Tuples - Basic Syntax
-<br>
+### Basic Syntax
 
-- _Tuples_ can be defined in a few different ways.  Most basically, they are defined like this:
+Tuples can be defined in a few different ways.  Most basically, they are defined like this:
 
-	```python
-	colors = ('red', 'green', 'blue')
-	print(colors)
-	> ('red', 'green', 'blue')
-	print( len(colors) )
-	> 3
-	``` 
-	Although it seems that _parentheses_ are used to create _tuples_, it's actually the _commas_...
+```python
+colors = ('red', 'green', 'blue')
+print(colors)
+> ('red', 'green', 'blue')
+print( len(colors) )
+> 3
+``` 
 
----
-### Tuples - Basic Syntax
-<br>
+The parentheses are actually optional (except when creating an empty tuple), however, the use of parens is popular.
 
-- For more proof that the use of commas create a tuple, let's say you wanted to create a 1-tuple containing the string of "Hello".
+Here's how an empty tuple is created:
 
-- If parens created tuples, this would work:
+```python
+things = ()
+print( type(things) )
+> <class 'tuple'>
+```
 
-	```python
-	hello_tuple = ('Hello')
-	```
+If you need to create a 1-tuple (a tuple with one item), be aware that a comma is necessary:
+
+```python
+# Will not create a tuple
+hello_tuple = ('Hello')
+print( type(hello_tuple) )
+>  <class 'str'>
+
+hello_tuple = ('Hello',)
+# or just the following (no parens required)
+hello_tuple = 'Hello',
+print( type(hello_tuple) )
+> <class 'tuple'>
+```
 	
-	But it doesn't, however, this will:
-	
-	```python
-	hello_tuple = ('Hello',)
-	# or the following
-	hello_tuple = 'Hello',
-	```
-
----
-### Tuples - Basic Syntax
-<br>
-
-- _Tuples_ can be created without using any parentheses:
-
-	```python
-	colors = 'red', 'green', 'blue'
-	print(type(colors))
-	> <class 'tuple'>
-	```
-
-- However, creating single-item _tuples_ without parens requires a trailing comma:
-
-	```python
-	colors = 'purple',  # tuple, not a string
-	print(type(colors), len(colors))
-	> <class 'tuple'> 1
-	print(colors)
-	> ('purple',)
-	```
-
----
 ### Differences Between Tuples & Lists
 
-- _Tuples_ are immutable, so they are great for protecting data that you don't want changed.
+The main difference between tuples and lists is that tuples are immutable.
 
-- Python iterates over _tuples_ faster than _lists_. _Tuples_ can also be used as _keys_ for _dictionaries_.
+Since tuples can't be changed after they are created, they are great for protecting data that you don't want to be changed.
 
-- Generally, you'll find that _tuples_ are used to contain heterogeneous (different) data types and _lists_ for homogeneous (similar) data types.
+Python iterates over tuples faster than lists.
 
-- _Tuples_ are often classified based on how many items they contain, e.g., a **2-tuple** would be used to hold a `key` and its `value`
+Because they are immutable, tuples can even be used as keys for dictionaries.
 
----
-### Tuples - Accessing Items
+Generally, you'll find that tuples are used to contain heterogeneous (different) data types and lists for homogeneous (similar) data types.
 
-- Although _tuples_ can't be modified like _lists_, we can retrieve their items in exactly the same way:
+### Accessing Items
 
-	```python
-	colors = ('red', 'green', 'blue')
-	green = colors[1]
-	print(green)
-	> green
-	```
-- _Sequences_ also have an `index()` method that returns the index of the first match:
+Although tuples can't be modified like lists, we can retrieve their items in the same way using square brackets:
 
-	```python
-	colors = ('red', 'green', 'blue')
-	blue_idx = colors.index('blue')
-	print(blue_idx)
-	> 2
-	```
-	
----
-### Tuples - Iteration
-<br>
+```python
+colors = ('red', 'green', 'blue')
+green = colors[1]
+print(green)
+> green
+```
 
-- Just like with _lists_, other _sequences_ are iterated upon in the same way - by using `for` loops:
+_Sequences_ (lists, tuples & strings) also have an `index()` method that returns the index of the first match:
 
-	```python
-	colors = ('red', 'green', 'blue')
-	for idx, color in enumerate(colors):
-	  print(idx, color)
-	> 0 red
-	> 1 green
-	> 2 blue
-	```
+```python
+colors = ('red', 'green', 'blue')
+blue_idx = colors.index('blue')
+print(blue_idx)
+> 2
+```
 
----
-### Tuples - Unpacking
-<br>
+### Iteration
 
-- _Tuples_ have a convenient feature, called _unpacking_, for doing multiple variable assignment:
+The items in tuples are iterated over by using `for` loops as we saw previously with lists:
 
-	```python
-	colors = ('red', 'green', 'blue')
-	red, green, blue = colors
-	print(red, green, blue)
-	> red green blue
-	```
-	A tuple of variables on the left-side of the assignment operator and a tuple of values on the right is all it takes.
+```python
+colors = ('red', 'green', 'blue')
+for idx, color in enumerate(colors):
+  print(idx, color)
+> 0 red
+> 1 green
+> 2 blue
+```
 
----
+### Unpacking Tuples
+
+Tuples (and other sequences such as lists & strings) have a convenient feature, called **unpacking**, for performing multiple variable assignments in a single line of code:
+
+```python
+colors = ('red', 'green', 'blue')
+r, g, b = colors
+print(r, g, b)
+> red green blue
+```
+
+Comma separated variables on the left-side of the assignment operator and a sequence of values on the right is what it takes.
+
+FYI, we were seeing unpacking in action within the `for in` loops above, for example:
+ 
+```python
+for key, val in student.items():
+  print( f"{key} = {val}" )
+```
+
 ## Sequences Can Be "Sliced"
 
----
-### Slicing Sequences
-<br>
+Slicing in Python is used to create "slices" (copies) of sequences.
 
-- Python is known for having some cool tricks up its sleeve, for one, there's the "slice" operator (`[m:n]`).
+However, instead of using a `slice` method like we did in JS, Python has a cool "slice" operator that uses this syntax:
 
-- Since _sequence_ types are a collection of items (BTW, characters are the items in a _string_), we can target subsets, called _slices_, of those items using `[m:n]`.
+```python
+a_sequence[m:n]
+```
 
----
-### Slicing Sequences
-<br>
+Just like with indexing, slicing uses square brackets, but adds a colon:
 
-- Just like with indexing, slicing uses _square brackets_, but adds a _colon_:
+```python
+short_name = 'Alexandria'[0:4]
+print(short_name)
+> Alex
+```
 
-	```python
-	short_name = 'Alexandria'[0:4]
-	print(short_name)
-	> Alex
-	```
+Note that the slice includes up to, **but not including** the index to the right of the colon.
 
-- Note that the slice includes up to, but not including the index to the right of the colon.
+❓ Is this the same as with the ending index in JS's `slice` method? 
 
----
-### Slicing Sequences
-<br>
+If the first index is omitted, the slice copies the sequence starting at the beginning (index of `0`):
 
-- If the first index is omitted, the slice copies the _sequence_ starting at the beginning:
-
-	```python
-	colors = ('red', 'green', 'blue')
-	print( colors[:2] )
-	> ('red', 'green')
-	```
+```python
+colors = ('red', 'green', 'blue')
+print( colors[:2] )
+> ('red', 'green')
+```
  
-- If the up to index is omitted, the slice copies the _sequence_ all the way to the end:
+If the up to index is omitted, the slice copies the sequence all the way to the end:
 
-	```python
-	colors = ['red', 'green', 'blue']
-	print( colors[1:] )
-	> ['green', 'blue']
-	```
+```python
+colors = ['red', 'green', 'blue']
+print( colors[1:] )
+> ['green', 'blue']
+```
 
----
-### Slicing Sequences - Question
-<br>
+❓ What would the value of `fruits` be?
 
-- **What would the value of `fruit_copy` be?**
+```python
+fruit = ('apples', 'bananas', 'oranges')
+fruits = fruit[:]
+```
 
-	```python
-	fruit = ('apples', 'bananas', 'oranges')
-	fruit_copy = fruit[:]
-	```
+## Python Containers Summary
 
----
-## Summary
-<br>
+Python's **dictionary**, **list** and **tuple** are the most common data types used as containers for collections of data.
 
-- Python offers amazing power, convenience and readability with features such as _list comprehensions_ and _slicing_.
+In addition, Python offers amazing power, convenience and readability with features such as list comprehensions and slicing.
 
-- However, as usual, it takes practice to become "comfortable" with these concepts, so on to the lab, but first...
+However, as usual, it takes practice to become "comfortable" with these concepts, so on to the lab, but first...
 
----
 ## ❓ Essential Questions
-<br>
 
-1. True or False:  In Python, we use Lists, Tuples & Dictionaries as containers for data.
+1. What is the practical difference between a list and a tuple. 
 
 2. Assuming this dictionary:
 
@@ -762,4 +650,10 @@
 	
 	```python
 	color_of_bananas = fruit.bananas
+	```
+
+3. What concept is being used below to assign values to the variables and what would the value of `two` be:
+
+	```python
+	one, two, three = 'abc'
 	```
