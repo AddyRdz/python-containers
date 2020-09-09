@@ -381,7 +381,7 @@ for idx, color in enumerate(colors):
 	}
 	```
 3. Iterate over the items in the `scores` list and print<br>
-   `[name] scored [points] points`<br>
+   **_[name] scored [points] points_**<br>
    for each item in the list.
 
 ## List Comprehensions
