@@ -183,7 +183,7 @@ for key, val in student.items():
 
 The `for` statement "unpacks" the tuples by assigning its values to multiple variables like with `key, val` above.
 
-### 💪 Dictionary - Practice Exercise (10 minutes)
+### 💪 Dictionary - Practice Exercise (10 mins)
 
 1. Define a Python dictionary named `where_my_things_are` containing a few items where:
 	- the `keys` are things you have, and
@@ -289,8 +289,6 @@ print(nums)
 > [1, 3, 5, 2, 4, 6]
 ```
 
-❓ How can we combine arrays in JavaScript into a new array?
-
 ### Inserting an Item
 
 To add an item anywhere within a list, use the `insert()` method:
@@ -371,25 +369,20 @@ for idx, color in enumerate(colors):
 > 2 blue
 ```
 
-## ❓ Dictionary & List Review Questions
+## 💪 Lists & Dictionary - Practice Exercise (10 mins)
 
-1. **What are dictionaries similar to in JS?**
-
-2. **What are lists similar to in JS?**
-
-3. **Why might the following code not work?**
+1. Define a list named `scores` that contains at least two dictionaries.
+2. Each dictionary should have the following shape:
 
 	```python
-	menu = {
-	  hamburger: 4.99,
-	  french_fries: 1.99,
-	  taco: 2.99
+	{
+	  'name': 'name of the player',
+	  'points': 25  # points the player scored
 	}
 	```
-
-4. **What is one way to add items to a list?**
-
-5. **What operator can we use to remove an item from a list or a dictionary?**
+3. Iterate over the items in the `scores` list and print<br>
+   `[name] scored [points] points`<br>
+   for each item in the list.
 
 ## List Comprehensions
 
