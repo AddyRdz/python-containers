@@ -371,8 +371,7 @@ for idx, color in enumerate(colors):
 
 ## 💪 Lists & Dictionary - Practice Exercise (10 mins)
 
-1. Define a list named `scores` that contains at least two dictionaries.
-2. Each dictionary should have the following shape:
+1. Define a list named `scores` that contains a dictionary with the following shape:
 
 	```python
 	{
@@ -380,6 +379,7 @@ for idx, color in enumerate(colors):
 	  'points': 25  # points the player scored
 	}
 	```
+2. Next, add an additional "score" dictionary to the `scores` list.
 3. Iterate over the items in the `scores` list and print<br>
    **_[name] scored [points] points_**<br>
    for each item in the list.
