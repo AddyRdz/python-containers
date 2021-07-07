@@ -12,7 +12,7 @@
 
 ## Setup
 
-To test some of the examples and complete the exercises, please open a Python [repl.it](https://repl.it/).
+To test some of the examples and complete the exercises, please open a Python [replit](https://replit.com/).
 
 ## General Purpose Containers
 
@@ -63,14 +63,14 @@ Dictionaries are mutable:
 Any immutable type can be used as a key, including _numbers_ and _tuples_ (which we'll cover in a bit), for example:
 
 ```python
-someKey = 3
+option = 3
 
 d = {
-  someKey: 'three'
+  option: 'three'
 }
 ```
 
-The above dictionary, `d`, has 1 item with a key of `3` that holds the value of `'three'`.
+The above dictionary, `d`, has 1 item with a key of `3` that holds the value of `'three'`.  Note that the value of the `option` variable is "copied" as the key - thus no "link" to the `option` variable is created.
 
 > Only since version 3.6 does Python track the insertion order of items in a dictionary - so beware if you're relying on the order items are iterated upon.
 
