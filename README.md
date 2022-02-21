@@ -2,30 +2,7 @@
 
 # Python Containers - Lab
 
-**This lab is a DELIVERABLE**
-
-## Setup and Instructions
-
-- Create a Python-based [replit](https://replit.com) and name it "Python Containers Lab".
-- Put a commented heading for each exercise in your repl.  For example:
-
-  ```python
-  # Exercise 1
-
-  # your solution here
-
-
-  # Exercise 2
-
-  # your solution here
-
-  # etc.....
-  ```
-
-- Complete the exercises below...
-
 ## Exercises
-
 
 #### Exercise 1
 
@@ -82,18 +59,4 @@
 ## Solutions
 
 A solution can be found [here](https://repl.it/@jim_clark/Python-Containers-and-Ranges-Lab).
-
-## Deliverable
-
-**This lab is a deliverable.**
-
-Please submit the link to your Python repl using the "Link to submit Deliverables" in the class repo's README.
-
-
-
-
-
-
-
-
 
